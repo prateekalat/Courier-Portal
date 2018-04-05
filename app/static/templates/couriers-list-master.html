@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Of All Couriers</title>
+         <link rel="stylesheet" href="/static/css/vendor/bootstrap-toggle.min.css">
+     <script src="/static/js/vendor/bootstrap-toggle.min.js"></script>
+    <style>
+     .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+     .toggle.ios .toggle-handle { border-radius: 20px; }
+     .D1{text-align:center;}
+     .D2{float:center;}
+     .L1{float:left;}
+     .L1{text-align:right;}
+   </style>
+</head>
+<body>
+<div class="backdrop"></div>
+<div class="fab child" data-subitem="1"><span>C</span></div>
+<a class="btn-floating btn-large waves-effect waves-light red" src="/static/js/vendor/materialize.min.js"><i class="material-icons">+</i></a>
+	 <p class="text-right">
+        <a class="btn btn-warning" href="/logout">Logout</a>
+    </p>
+    <div class="D1">
+        <input type="text" class="search-query" />
+        <button type="button" class="btn btn-info" onclick="page('/courier/search/' + $('.search-query').val())">Search</button>
+        <!--<button type="button" onclick="courierManager.search($('.search-query').val())">Search</button>-->
+        <button type="button" class="btn btn-success create-courier">Add Courier</button>
+        <button type="button" class="btn btn-danger" onclick="courierManager.getRec()" >Submit Changes</button>
+    </div>
+    
+    <div class="D2">
+    
+    <p>From Date :</p>   
+    		
+<div class="container">
+    <div class="row">
+        <div class='col-sm-3'>
+            <input type='text' class="form-control" id='datetimepicker1' />
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
+    
+    <p>To Date :</p>
+   <div class="container">
+    <div class="row">
+        <div class='col-sm-3'>
+            <input type='text' class="form-control" id='datetimepicker2' />
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
+        </div>
+
+     <div class="D1">
+         <table><tr>
+         <td><h3 >Filters : </h3></td>
+         <td><button type="button" class="btn btn-success" onclick="page('/courier/list')">Show All</button></td>
+         <td><button type="button" class="btn btn-danger" onclick="courierManager.receivedList()">Show Received</button></td>
+         <td><button type="button" class="btn btn-danger" onclick="courierManager.notReceivedList()">Show Not Received</button></td>
+         </tr></table>
+     </div>
+    <br/>
+    <br/>
+    <br/>
+    <table id='allCouriers' border='1' class="table table-hover table-stripped">
+    	<thead>
+            <tr class="info">
+                <td><b>Arrival Time</b></td>
+                <td><b>Name</b></td>
+                <td><b>Contents</b></td>
+                <td><b>Hostel</b></td>
+                <td><b>Room No.</b></td>
+                <td><b>Type</b></td>
+                <td><b>Sender's Address</b></td>
+                <td><b>Received</b></td>
+                <td><b>Modify</b></td>
+            </tr>
+        </thead>
+        <script>
+
+        </script>
+    	<tbody>
+
+    	<!--<div class="list-group">-->
+        	{{#each couriers}}
+        	<tr data-id="{{id}}">
+            	<!--<div href="/courier/{{ id }}" class="list-group-item clearfix" >-->
+                <div href="/courier/{{ id }}">
+            	    <td>{{ arrivalTime }}</td>
+            	    <td>{{ user_name }}</td>
+            	    <td>{{ contents }}</td>
+                    <td>{{ hostel }}</td>
+                    <td>{{ roomNo }}</td>
+                    <td>{{ types }}</td>
+                    <td>{{ senderAddress }}</td>
+
+                    {{#if received}}
+                    <td><input disabled checked data-toggle="toggle" name="{{id}}" data-on="Taken" data-off="Not Taken" class="toggle.btn-sm inp" data-style="ios" data-onstyle="info" data-offstyle="warning" type="checkbox"></td>
+                    {{else}}
+                    <td><input data-toggle="toggle" name="{{id}}" data-on="Taken" data-off="Not Taken" class="toggle.btn-sm tog inp" data-style="ios" data-onstyle="info" data-offstyle="warning" type="checkbox"></td>
+                     {{/if}}
+                    <td><button type="button" class=".btn btn-warning " onclick="courierManager.showModify($(this).data('id'))" data-id="{{id}}">Modify</button></td>
+                </div>
+            </tr>
+        	{{/each}}
+        <!--</div>-->
+    	</tbody>
+        </form>
+    </table>
+</body>
+</html>

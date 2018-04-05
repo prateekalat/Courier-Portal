@@ -1,0 +1,106 @@
+#+TITLE : Courier Portal 
+#+AUTHOR : Himanshu Bhatia, Prateek Alat, Chanakya Vishal
+#+EMAIL :himanshu.bhatia@students.iiit.ac.in, prateek.alat@students.iiit.ac.in, chanakyavishal.k@students.iiit.ac.in 
+
+* Libraries
+** Python
+- Flask
+- Flask-CAS
+- Flask-Mail
+
+** JavaScript
+- Bootstrap Slate Theme
+- Bootstrap-Toggle
+- Page.js
+- Handlebars
+- JQuery
+
+* User Manual
+** User Navigation
+The user logs in through IIIT's Central Authentication System (*CAS*).
+
+If the user is logging into the Courier Portal Application for the first time,
+a prompt is opened (one time only) to request for the phone number which will be used as a
+=primary key= in the user table (covered in data models).
+
+The phone number is kept *PRIVATE* and is not displayed to anyone.
+
+*** [[Data Model]]
+
+After registration, couriers are displayed to the user in a tabular manner
+
+| Arrival Time | Name | Phone Number | Contents | Hostel | Room No. | Type | Sender's Address |
+|--------------+------+--------------+----------+--------+----------+------+------------------|
+
+There is a button above the table called *View Unregistered Couriers* for viewing couriers
+whose =user= is not present in the database of registered users. Once you click that button the state
+of the button gets changed to *View Private Couriers*.
+
+The =logout= button ends the user's session and logs out of the =CAS=.
+
+* Master/Admin Manual
+** Master Navigation
+Filters:
+*** Show All
+Shows all couriers
+*** Show Received
+Shows all couriers which have been received
+*** Show Not Received
+Shows all couriers which have not been received
+
+** Add a Courier
+- Click on the =Add Courier= button to open the add courier window.
+- Enter all the required fields and click the =ADD= button.
+- The main page will be opened.
+- If the =CANCEL= button is clicked, the application will open to the main page.
+
+** Mark a Courier as Received
+- Mark all received couriers as =Taken= with their respective toggle buttons.
+- Click on the =Submit Changes= button to save the changes and display the main page.
+
+** Modify a Courier
+- Click on the =Modify= button of the courier whose details must be modified.
+- A form will be displayed.
+- Modify all the required attributes and submit the form.
+- The main page will be opened with the modified values.
+
+** Search For a Courier
+*** Different search options
+- Search according to dates that is from a particular date to some other particular date.
+- Search according to names of people.
+
+** Logout
+- Click on the =Logout= button.
+- Your =CAS= session will end and you will be redirected to the logout page.
+
+
+
+* Data Model
+** User
+- id(int) is the *Primary Key* for users table
+- name(string)
+- email(string) it has *Unique Key* constraint
+- roll(integer)
+- master(boolean) which is used for checking whether the person logged in is master or not
+- users table has *relationship* with couriers   
+** Courier
+- id(int) as an *autoincrement* value and also it is the *primary key* for couriers table
+- arrival_time(string) 
+- contents(string)
+- user_id(integer) is the *foriegn key* that is it is primary key for the users table which nothing but phone number
+- user_name(string)
+- hostel(string)
+- room_no(integer)
+- sender's address(string)
+- types(string)
+- received(boolean) is for checking whether a particular parcel is taken or not 
+- couriers table has *relationship* with users table
+* Controllers
+** User controllers
+- It basically consists of routes which includes */register*, */user* and */login*.
+- It also checks for whether the phone number entered by user is valid or not. 
+
+** Courier controllers
+- It consists of an important part that is *requires_master* which keeps a check on all master accessible pages. 
+- It also consists of routes which includes */courier*, */courier/anonymous*, */<id>*,*/courier/received*,*/courier/search/<query>*,*/courier/notReceived* , */courier/subReceived*. 
+- Create courier function checks whether all the required feilds contains appropiate values or not.

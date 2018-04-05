@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add A New Courier</title>
+</head>
+<body>
+	<form action="{{ formAction }}" method="post">
+    <p class="">
+        <h2 align="center">Add A New Courier</h2>
+    </p>
+    <div class="panel panel-default form-group">
+        <div class="panel-body">
+            Name<br/>
+            <input align="left" style="width:75%;text-transform: capitalize;" type="text" name="user_name" class="form-control" value="{{courier.user_name}}"/>
+        <br/>
+        <br/>
+        <br/>
+            Phone Number<br/>
+            <input style="width:75%;" type="text"  name="user_id" class="form-control" value="{{ courier.user_id}}"/>
+        <br/>
+        <br/>
+        <br/>
+             Date
+            <div class="input-append date form_datetime" data-date="{{courier.arrivalTime}}">
+                    <input size="16" type="text" name="arrivalTime" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>
+        <br/>
+        <br/>
+        <br/>
+            Hostel Name<br/>
+            <input style="width:75%;" type="text" name="hostel" class="form-control" value="{{ courier.hostel }}" />
+        <br/>
+        <br/>
+        <br/>
+            Room Number<br/>
+            <input style="width:75%" type="text" name="roomNo" class="form-control" value="{{ courier.roomNo }}"/>
+        <br/>
+        <br/>
+        <br/>
+            Types<br/>
+            <input style="width:75%;text-transform: capitalize;" type="text" name="types" class="form-control" value="{{ courier.types }}"/>
+        <br/>
+        <br/>
+        <br/>
+            Contents<br/>
+            <textarea style="width:75%;text-transform: capitalize;" name="contents" rows="3" class="form-control" >{{ courier.contents }}</textarea>
+        <br/>
+        <br/>
+        <br/>
+            Sender's Address<br/>
+            <textarea style="width:75%;text-transform: capitalize;" name="sender_address" rows="3" class="form-control">{{ courier.senderAddress }}</textarea>
+        <br/>
+        <br/>
+        <br/>
+        </div>
+        <div class="panel-footer" align="center">
+            <button type="button" class="btn btn-danger" align="left" onclick="page('/courier/list')">CANCEL</button>
+            <button type="submit" class="btn btn-success saveChange" align="right">SAVE CHANGES</button>
+        </div>
+        </div>
+    </div>
+	</form>
+
+</body>
+</html>

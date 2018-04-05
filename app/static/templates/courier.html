@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add A New Courier</title>
+</head>
+<body>
+	<form action="{{ formAction }}" method="post">
+    <p class="">
+        <h2 align="center">Add A New Courier</h2>
+    </p>
+    <div class="panel panel-default form-group">
+        <div class="panel-body">
+            Name<br/>
+            <input align="left" style="width:75%" type="text" name="user_name" class="form-control" placeholder="Name"/>
+        <br/>
+        <br/>
+        <br/>
+            Phone Number<br/>    
+            <input style="width:75%" type="text" name="user_id" class="form-control" placeholder="Phone Number"/>
+        <br/>
+        <br/>
+        <br/>
+            Date
+            <div class="input-append date form_datetime" data-date="2013-02-21T15:25:00Z">
+                    <input size="16" type="text" name="arrivalTime" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>
+        <br/>
+        <br/>
+        <br/>
+
+            Hostel Name<br/>
+            <input style="width:75%" list="hostels" class="form-control" name="hostel" />
+            <datalist id="hostels">
+                <option value="Bakul">Bakul</option>
+                <option value="Kadmba Nivas">Kadmba Nivas</option>
+                <option value="Parijaat Nivas">Parijaat Nivas</option>
+                <option value="OBH D block">OBH D block</option>
+                <option value="OBH E block">OBH E block</option>
+                <option value="OBH">OBH</option>
+                <option value="Parul Nivas">Parul Nivas</option>
+            </datalist>    
+        <br/>
+        <br/>
+        <br/>
+            Room Number<br/>   
+            <input style="width:75%" type="text" name="roomNo" class="form-control" placeholder="Room Number"/>
+        <br/>
+        <br/>
+        <br/>
+            Types<br/>    
+            <input style="width:75%" type="text" name="types" class="form-control" placeholder="Types"/>
+        <br/>
+        <br/>
+        <br/>
+            Contents<br/>    
+            <textarea style="width:75%" name="contents" rows="3" class="form-control" placeholder="Contents" ></textarea>
+        <br/>
+        <br/>
+        <br/>
+            Sender's Address<br/>    
+            <textarea style="width:75%" name="sender_address" rows="3" class="form-control" placeholder="Sender's Address"></textarea>
+        <br/>
+        <br/>
+        <br/>
+        </div>
+        <div class="panel-footer" align="center">
+            <button type="button" class="btn btn-danger" align="left" onclick="page('/courier/list')">CANCEL</button>
+            <button type="submit" class="btn btn-success" align="right">ADD</button>
+        </div>
+        </div>
+    </div>
+	</form>
+
+</body>
+<script type="text/javascript">
+                    $(".form_datetime").datetimepicker({
+                    format: "dd MM yyyy - hh:ii",
+                    autoclose: true,
+                    todayBtn: true,
+                    startDate: "2013-02-14 10:00",
+                    minuteStep: 10
+                });
+            </script>
+</html>
